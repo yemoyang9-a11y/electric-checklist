@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F6F7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121316">
+<title>전기기능사 실기 체크리스트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Gothic+A1:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F6F7;--surface:#FFFFFF;--ink:#16181C;--ink2:#4A4F57;--line:#DFE2E6;--accent:#CF350C}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121316;--surface:#1B1D21;--ink:#F1F2F4;--ink2:#A9AFB8;--line:#2C2F35;--accent:#FF6A3D;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121316;--surface:#1B1D21;--ink:#F1F2F4;--ink2:#A9AFB8;--line:#2C2F35;--accent:#FF6A3D;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Geist','Gothic A1',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-variant-numeric:tabular-nums;word-break:keep-all}
+a{color:inherit}
+button{font-family:inherit;color:inherit;border:0;cursor:pointer}
+h1,h2,p,ol,ul{margin:0;padding:0}
+ol,ul{list-style:none}
+h1:focus{outline:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.title,.hero,.step-name{text-wrap:balance}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.app{width:100%;max-width:480px;min-height:100vh;min-height:100dvh;margin:0 auto;display:flex;flex-direction:column;background:var(--bg)}
+.press{transition:transform .16s cubic-bezier(.16,1,.3,1),background-color .2s ease,opacity .2s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.press:active{transform:scale(.98)}
+.press:disabled{cursor:not-allowed;transform:none;opacity:.4}
+.pop{animation:pop .22s cubic-bezier(.16,1,.3,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.rise{animation:rise .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.icon-link{width:44px;height:44px;margin-left:-12px;display:flex;align-items:center;justify-content:center}
+.head{padding:10px 20px}
+.title{margin-top:2px;font-size:32px;line-height:1.2;font-weight:800;letter-spacing:-1.2px}
+.sub{margin-top:4px;font-size:16px;color:var(--ink2)}
+.rule{margin-top:10px;font-size:19px;line-height:1.45;font-weight:700;letter-spacing:-.3px}
+.tabs{margin-top:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tab{height:56px;border-radius:16px;background:var(--surface);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;white-space:nowrap}
+.tab.on{background:var(--ink);color:var(--bg)}
+.tab b{font-size:19px;line-height:1.1;font-weight:700;letter-spacing:-.5px}
+.tab b.word{font-size:17px;line-height:1.2;letter-spacing:-.4px}
+.tab small{font-size:13px;line-height:1.2;font-weight:500}
+.body{flex:1;padding:8px 20px 12px;display:flex;flex-direction:column;gap:8px}
+.page-name{margin-bottom:4px;font-size:24px;font-weight:700;letter-spacing:-.6px}
+.row{width:100%;border-radius:16px;background:var(--surface);color:var(--ink);text-align:left;display:grid;grid-template-columns:40px minmax(0,1fr)}
+.row.done{background:transparent;opacity:.62}
+.row.simple{min-height:60px;padding:14px;align-items:center}
+.row.detail{padding:16px 14px;align-items:start}
+.ring{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center}
+.done .ring{border-color:var(--ink);background:var(--ink)}
+.row-text{font-size:17px;font-weight:500;line-height:1.4}
+.done .row-text,.done .row-title{text-decoration:line-through}
+.row-stack{display:flex;flex-direction:column;gap:6px}
+.row-title{font-size:20px;line-height:28px;font-weight:700;letter-spacing:-.3px}
+.kv{display:grid;grid-template-columns:124px minmax(0,1fr);column-gap:6px;font-size:16px;line-height:1.45}
+.kv span:first-child{color:var(--ink2)}
+.kv span:last-child{font-weight:500}
+.kv.pin span:last-child{font-weight:700}
+.note{margin-top:6px;font-size:16px;line-height:1.5;color:var(--ink2)}
+.continue{margin-top:6px;min-height:60px;padding:0 14px;border-radius:16px;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:17px;font-weight:700;text-decoration:none}
+.foot{position:sticky;bottom:0;z-index:1;padding:12px 20px calc(20px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.foot.plain{background:var(--bg);border-top:0}
+.round{width:56px;height:56px;flex:none;border-radius:50%;background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.foot.plain .round{background:var(--surface)}
+.status{display:flex;align-items:baseline;gap:8px;font-size:16px;font-weight:700;white-space:nowrap}
+.status em{font-style:normal;color:var(--ink)}
+.status em.left{color:var(--accent)}
+
+.home{padding:24px 20px calc(16px + env(safe-area-inset-bottom));flex:1;display:flex;flex-direction:column}
+.brand{font-size:15px;font-weight:600}
+.hero{margin-top:14px;font-size:clamp(32px,10.25vw,40px);line-height:1.2;font-weight:800;letter-spacing:-1.6px}
+.lead{margin-top:10px;font-size:16px;line-height:1.5;color:var(--ink2);animation-delay:60ms}
+.menu{margin-top:auto;padding-top:24px;display:flex;flex-direction:column}
+.menu a{min-height:124px;display:grid;grid-template-columns:104px minmax(0,1fr) 24px;align-items:center;text-decoration:none}
+.menu a.split{border-top:1px solid var(--line)}
+.count{font-size:72px;line-height:1;font-weight:700;letter-spacing:-3.5px}
+.count.hot{color:var(--accent)}
+.menu-text{display:flex;flex-direction:column;gap:2px}
+.menu-text b{font-size:21px;font-weight:700;letter-spacing:-.4px}
+.menu-text small{font-size:15px;color:var(--ink2)}
+.source{margin-top:8px;align-self:center;min-height:44px;padding:0 8px;display:flex;align-items:center;font-size:15px;color:var(--ink2)}
+
+.bar{margin-top:4px;display:flex;align-items:baseline;justify-content:space-between}
+.bar h1{font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-1.4px}
+.bar p{font-size:18px;font-weight:700}
+.seg{margin-top:14px;padding:4px;border-radius:999px;background:var(--surface);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.seg button{height:44px;border-radius:999px;background:transparent;font-size:17px;font-weight:700}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.group-head{width:100%;min-height:60px;padding:0;background:transparent;display:flex;align-items:center;justify-content:space-between;text-align:left}
+.group-text{display:flex;flex-direction:column;gap:1px}
+.group-text b{font-size:21px;font-weight:700;letter-spacing:-.4px}
+.group-text small{font-size:15px;font-weight:400;color:var(--ink2)}
+.group-head svg.open{transform:rotate(180deg)}
+.group-list{display:flex;flex-direction:column;gap:8px}
+.item{min-height:60px;padding:0 14px;border-radius:16px;background:var(--surface);display:flex;align-items:center;gap:12px;text-decoration:none}
+.item.done{background:transparent;opacity:.62}
+.item .no{width:30px;flex:none;font-size:18px;font-weight:700;letter-spacing:-.5px}
+.item .name{flex:1;font-size:18px;font-weight:500}
+.item.next .name{font-weight:700}
+.item .tag{font-size:15px;font-weight:700;color:var(--accent)}
+.item.next .tag{color:var(--ink)}
+.cta{height:56px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:18px;font-weight:700;text-decoration:none;white-space:nowrap}
+.reset{margin-top:8px;align-self:center;min-height:44px;padding:0 12px;background:transparent;font-size:15px;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+.reset.sure{color:var(--accent);font-weight:700}
+
+.step-top{padding:10px 20px 0;display:flex;align-items:center;justify-content:space-between}
+.step-top p{font-size:18px;font-weight:700}
+.step{flex:1;padding:8px 20px 16px;display:flex;flex-direction:column;gap:18px}
+.crumb{font-size:16px;color:var(--ink2)}
+.step-name{margin-top:2px;font-size:clamp(36px,11.3vw,44px);line-height:1.15;font-weight:800;letter-spacing:-1.8px}
+.step-name.long{font-size:32px;line-height:1.2;letter-spacing:-1.2px}
+.step-sub{margin-top:4px;font-size:16px;color:var(--ink2)}
+.big{display:flex;flex-direction:column;gap:10px}
+.big li{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px}
+.big b{font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-1px}
+.big small{font-size:16px;color:var(--ink2)}
+.sec{display:flex;flex-direction:column;gap:8px}
+.sec h2{font-size:17px;font-weight:700}
+.sec h2.warn{color:var(--accent)}
+.seq{display:flex;flex-direction:column;gap:8px;counter-reset:n}
+.seq li{counter-increment:n;display:grid;grid-template-columns:28px minmax(0,1fr);font-size:18px;line-height:1.45;font-weight:600}
+.seq li::before{content:counter(n);font-weight:700;color:var(--ink2)}
+.plain-list{display:flex;flex-direction:column;gap:8px;font-size:17px;line-height:1.5}
+.keys{display:flex;flex-direction:column;gap:8px;font-size:19px;line-height:1.45;font-weight:700;letter-spacing:-.3px}
+.warns{display:flex;flex-direction:column;gap:8px;font-size:17px;line-height:1.5}
+.toggle{flex:1;min-width:0;height:56px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:17px;font-weight:700;white-space:nowrap}
+.toggle.on{background:var(--surface);color:var(--ink)}
+
+@media (max-width:340px){
+  .tab b.word{font-size:15px}
+  .tabs{gap:6px}
+  .toggle{font-size:15px}
+  .menu a{grid-template-columns:88px minmax(0,1fr) 24px}
+  .count{font-size:60px}
+  .kv{grid-template-columns:112px minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.press{transition:none}.press:active{transform:none}.pop,.rise{animation:none}}
+</style>
+</head>
+<body>
+<div id="app" class="app"></div>
+<div id="live" class="sr" aria-live="polite" aria-atomic="true"></div>
+<noscript>이 체크리스트는 자바스크립트를 켜야 사용할 수 있어요.</noscript>
+<script>
+const STAGES = [
+  { name: '제어판', groups: [
+    { name: '제어판작업', minutes: '목표 25분', items: [[1, '넘버링'], [2, '작도'], [3, '기구배치']] },
+    { name: '주회로배선', minutes: '목표 25분', items: [[4, '접지선'], [5, '주회로']] },
+    { name: '보조회로배선', minutes: '목표 40분', items: [[6, 'EOCR'], [7, '상단'], [8, '하단'], [9, '중간'], [10, '중간점검']] }
+  ] },
+  { name: '배관', groups: [
+    { name: '배관준비', minutes: '목표 35분', items: [[11, '제어판 부착'], [12, '작도'], [13, '박조단'], [14, '새들링'], [15, '관 표시, 커넥터, 공통선']] },
+    { name: '배관작업', minutes: '목표 35분', items: [[16, 'CD관'], [17, 'PE관'], [18, '케이블']] },
+    { name: '입선', minutes: '목표 25분', items: [[19, '보조회로'], [20, '주회로']] },
+    { name: '결선', minutes: '목표 35분', items: [[21, '외부기구'], [22, '주회로'], [23, 'TB2, TB3, TB4']] }
+  ] },
+  { name: '점검', groups: [
+    { name: '외관검사', minutes: '작업을 모두 마친 뒤', items: [[24, '물리적 점검']] },
+    { name: '도통검사', minutes: '벨시험기로 전 구간 확인', items: [[25, 'EOCR'], [26, '제어판'], [27, '감독관 관련']] }
+  ] }
+];
+
+const CABLE_KEY = '지급된 전선 2바퀴를 잘라서 사용 (1바퀴 80~90cm)';
+const MARK_KEY = '기구명과 단자번호 확인 후 네임펜이나 고체형광펜으로 마킹';
+const COUNT_KEY = '연결할 단자 개수 확인 및 빗금치기';
+
+const STEPS = {
+  1: {
+    sections: [
+      { h: '배관도', items: ['전선 가닥 빗금', '단자대 번호 부여 (회로도에도 표시)'] },
+      { h: '회로도', items: ['전원 부분 넘버링', '기구별 넘버링 (공통선 연결 주의)'] }
+    ],
+    keys: ['기구배치도: MCCB와 EOCR 위치 확인 (기구 부착 시 위치가 바뀔 수 있어요)', '배관도: PB 색상 위치, 램프 색상 위치, TB 위치 확인'],
+    warns: ['PB: 색상과 접점 확인', 'YL, BZ: 병렬 여부 확인. 병렬이면 전선 2가닥', '리밋스위치 공통선 없음: LS1 1(하) 2(상), LS2 3(하) 4(상)', '리밋스위치 공통선 있음: LS1 1(하) 2(상)은 공통, LS2 3(하)']
+  },
+  2: {
+    sections: [{ items: ['연필과 자로 상, 하, 좌, 우 5cm 지점 표시', '기구배치 기준선: 세로 420mm 기준 좌우 양쪽 50, 145, 275, 370mm 지점 표시', '배관 위치 상단: 가로 400mm 기준 100, 200, 300mm 지점 화살표 ↑ 표시', '배관 위치 하단: 가로 400mm 기준 50, 150, 250, 350mm 지점 화살표 ↓ 표시'] }],
+    keys: ['제어판 크기 확인: 가로 400mm, 세로 420mm']
+  },
+  3: {
+    big: [['고정'], ['종이테이프 붙이기'], ['단자대 번호 기입'], ['나사풀기']],
+    keys: ['MCCB 상하, 퓨즈 상태, 릴레이 배꼽은 아래 방향', '램프 상태: 뚜껑을 열어 전구 체결 확인', '배치 후 기구배치도와 일치하는지 확인'],
+    warns: ['회로선이 지나가는 자리에 분필로 기준선 그리기', 'MCCB, 퓨즈는 전동드릴 사용 금지']
+  },
+  4: {
+    big: [['TB1 PE'], ['TB2 PE', '또는 TB3 먼저'], ['TB3 PE'], ['TB4 E3', '플로트레스만, 맨 마지막에']],
+    keys: [CABLE_KEY],
+    warns: ['TB4를 중간에 결선하면 선 3가닥이 물려요.', 'MCCB 주회로선은 피복을 더 길게 벗기기.', '리밋스위치 도면은 TB4에 접지선을 연결하지 않아요.']
+  },
+  5: {
+    sections: [{ items: ['TB1 → MCCB 123', 'MCCB 456 → EOCR 123', 'EOCR 1 → 퓨즈 상단 1 (갈색), EOCR 3 → 퓨즈 상단 1 (회색)', 'EOCR 789 → MC1 123', 'MC1 123 → MC2 123', 'MC1 789 → TB2 U1 V1 W1', 'MC2 789 → TB3 U2 V2 W2'] }],
+    keys: [CABLE_KEY],
+    warns: ['MC1, MC2의 789와 10핀 단자대 넘버링 자리가 가까우면 결선이 어려워요. MC와 단자대 간격을 고려해 10핀 단자대 번호를 부여하세요.']
+  },
+  6: {
+    big: [['결선'], ['벨테스트', 'EOCR 구간']],
+    keys: ['지급된 전선 12바퀴 사용 (1바퀴 80~90cm, 나머지는 잘 감아두기)', '연결할 단자 개수 확인', MARK_KEY],
+    warns: ['지급된 전선은 안쪽부터 사용하기.']
+  },
+  7: {
+    big: [['결선'], ['벨테스트', '상단 작업 구간']],
+    keys: [COUNT_KEY, MARK_KEY],
+    warns: ['작업 후 반드시 벨테스트 하기.']
+  },
+  8: {
+    big: [['결선'], ['벨테스트', '하단 작업 구간']],
+    keys: [COUNT_KEY, MARK_KEY],
+    warns: ['작업 후 반드시 벨테스트 하기.', 'FLS 전원 접점 착오 주의 (5번, 6번)', '하단 단자 개수 10개 (퓨즈 1, 공통접점 단자 2, 기구 전원 7)']
+  },
+  9: {
+    sections: [
+      { h: '접점 2~3개', items: ['연결할 회로 확인 후 회로도에 검정 네임펜으로 빗금 [ / ]', '결선이 끝나면 빗금을 더해 [ X ]', '육안점검: 접점 개수와 연결 개수 비교'] },
+      { h: '접점 3~4개 이상', items: ['연결할 회로 확인 후 회로도에 접점 마킹과 같은 색으로 빗금 [ / ]', '결선이 끝나면 빗금을 더해 [ X ]', '육안점검: 접점 개수와 연결 개수 비교'] }
+    ],
+    keys: [COUNT_KEY, MARK_KEY],
+    warns: ['중간 회로 결선이 끝나면 벨테스트.', '회로도의 짧은 구간 작업 누락 조심.']
+  },
+  11: {
+    sections: [{ items: ['대각선 방향으로 나사 작업', '배관배치도 붙이기'] }],
+    keys: ['어깨보다 낮게, 작업판 가운데를 기준으로 맞추기', 'J 위치에 따라 왼쪽이나 오른쪽으로 조정'],
+    warns: ['배관작업을 감안해 상하좌우 간격 확인.', '벽판 하단 여백부터 제어판 하단까지 65cm 이상 이격.']
+  },
+  12: {
+    sections: [{ items: ['제어판 상, 하단 수평선', '제어판 상단', '제어판 하단'] }],
+    keys: ['작도시간 5분'],
+    warns: ['배관도면을 보지 않고 작도하기.']
+  },
+  13: {
+    sub: '박스 + J + 단자대',
+    big: [['컨트롤 박스 부착'], ['J', '팔각박스'], ['단자대 부착']],
+    keys: ['컨트롤 박스 나사 풀기 (미니 전동드라이버)', '조인트박스 구멍 뚫기 (드라이버 또는 엄지손가락)', 'CD 커넥터 마개 제거 (드라이버)'],
+    warns: ['컨트롤 박스는 3개만 설치. J 하단부 PE관 일자형 구간은 설치하지 않아요.']
+  },
+  14: {
+    sections: [{ items: ['상단은 새들 위치 표시만', '하단은 새들 위치 표시 후 새들링 작업'] }],
+    keys: ['오른쪽 손목에 자석밴드 착용', '새들은 벽판에 붙인 일회용컵이나 작업조끼 왼쪽 아래 주머니에'],
+    warns: ['위치 표시는 전체 다, 새들링 작업은 하단부만.', 'U자형 관은 바깥쪽에 나사 작업.', 'TB1~4 단자대는 컨트롤 박스 뚜껑을 단자대에 걸친 상태에서 새들링 위치 표시.']
+  },
+  15: {
+    sections: [
+      { items: ['PE관, CD관 표시 (분필)', '커넥터 연결', '외부기구 공통선 작업'] },
+      { h: '외부기구 공통선', plain: true, items: ['PB0/PB1: PB0 b와 PB1 a 공통단자 연결', 'PB2/CAP: 공통단자 없음', '램프 RL/GL, WL/YL: 공통단자 연결 (가까운 단자)', 'YL/BZ 공통단자인 도면: 공통단자 연결 (가까운 단자)', 'YL/BZ 병렬인 도면: 가까운 쪽끼리, 바깥쪽끼리 연결. 결선은 램프(YL)에', 'SS/CAP: 공통단자 연결', '공통선을 연결한 컨트롤 박스 뚜껑과 본체를 집게로 물리기 (PE관 일자형 부분은 나중에)'] }
+    ],
+    keys: ['스위치 박스 뚜껑 상하 확인'],
+    warns: ['PB 순서는 배관도에서 확인. 18개 도면 중 PB0 먼저 15개, PB1 먼저 3개예요.', 'PB2/CAP: 뚜껑 하단에 CAP 설치, PB2 a접점은 오른쪽.', '램프: 수동 드라이버 사용. 나사를 잠근 채 흔들어서 소리가 나면 램프가 빠진 거예요.', '램프 순서는 배관도에서 확인. 18개 도면 중 RL 먼저 11개, GL 먼저 7개예요.', 'YL/BZ 공통단자인 도면: 아래쪽 공통단자, 피복 길게 벗기고 스트리퍼로 90도 구부려 결선, 선 3가닥.', 'YL/BZ 병렬인 도면: 피복 길게 벗기고 스트리퍼로 90도 구부려 결선, 가까운 것끼리 먼 것끼리, 선 2가닥.', 'SS/CAP: 뚜껑 하단에 CAP 설치, SS 지시부가 11시 방향, 위쪽 두 단자를 공통선으로 연결.']
+  },
+  16: {
+    sections: [{ items: ['CD관 삽입', '새들 작업할 위치에 새들 끼워 넣기 (새들을 살짝 누른 뒤 CD관에)', '커넥터 연결 부분에 맞춰 CD관 커팅', '커넥터에 CD관 삽입 후 새들 작업 마무리'] }],
+    keys: ['CD관은 길이를 재지 않고 커넥터에 연결한 뒤 넉넉한 길이로 커팅'],
+    warns: ['상단은 조인트나 컨트롤 박스에서 시작, 하단은 제어판에서 시작. 단, 컨트롤 박스가 있으면 컨트롤 박스에서 시작.']
+  },
+  17: {
+    sections: [
+      { h: '일자형', items: ['배관작업', '관 길이 재단', '상단 부분과 연결', '아래쪽과 컨트롤 박스 연결 (벽면에 부착하지 않음)', '새들링 (누락하기 쉬워요)'] },
+      { h: 'U자형 (108cm)', items: ['일자로 만들기 (스프링벤더)', '구부릴 위치 표시 (36cm, 36cm)', '구부리기 (스프링벤더)', 'PE관 삽입, 새들링', '스프링벤더 삽입해 모양 잡기', '새들링', '마지막 부분 구부리기 (스프링벤더)', '윗부분 새들링', '관 자르기', '커넥터 삽입', '아래쪽 새들링'] }
+    ],
+    keys: ['상단은 새들링 안 함, 하단은 새들링'],
+    warns: ['상단은 커넥터에서 시작, 하단은 제어판에서 시작. 단, 커넥터가 있으면 커넥터에서 시작.', '상단 일자선 배관 마감 시 반드시 새들링.']
+  },
+  18: {
+    sections: [{ items: ['하단부 15cm 피복 벗기기', '내용물 제거', '커넥터 연결', '커팅 위치 선정 (제어판과 TB1 단자대에 대놓고 확인)', '커팅', '케이블용 새들 설치', '케이블 설치', '아래 단자대에 결선 (흑색, 회색)', '위쪽 단자대에 결선', '점검', '동작시험용 배선 갈(흑)회 10cm 연결'] }],
+    keys: ['시험장에서 지급하는 실물(1m)로 연습해 보기'],
+    warns: ['선 길이에 유의해 커팅. 추가 지급이 없어요.', 'TB1: 케이블 피복 15cm 제거 (흑색, 회색 파악이 쉬워요).', '전원측 단자대 갈(흑)회 각 10cm 인출, 끝부분 1cm 피복 벗김.', '제어함 쪽 새들링은 10cm 이격.', '커넥터 방향과 색상 조심.']
+  },
+  19: {
+    sections: [
+      { items: ['좌측 상단부터 작업 (황색선 가닥수 체크)', 'CD관 입선 시 종이테이프 이용'] },
+      { h: '가닥수별 입선', plain: true, items: ['2가닥: 구부린 쪽을 관으로', '3가닥: 3번째 가닥을 조금 더 길게 빼서 구부리고, 구부린 쪽을 관으로', '4가닥: 구부러진 쪽으로 입선', '8각 조인트박스: 황색선 2묶음 필요. 긴 황색선 묶음 양쪽에 종이테이프를 붙여 구분'] }
+    ],
+    keys: ['황색 보조선은 둥글게 펴고, 바닥에 내려놓고 안쪽 선부터 사용', '전선 가닥수 확인 후 절단. 선 길이는 충분히 여유 있게'],
+    warns: ['황색선은 안쪽 선부터 써야 꼬이지 않아요.', '배관도에서 선 가닥수 확인: PB2 2, YB 2~3, FLS 3, LS 3~4', '조인트: 선 길이를 한 번 더 잡아빼기.']
+  },
+  20: {
+    sections: [{ items: ['4선 한꺼번에 넣기', 'CD관 입선 시 녹황색 끝을 구부리기'] }],
+    keys: ['전선 길이를 측정하지 않고 한꺼번에 밀어 넣기']
+  },
+  21: {
+    sections: [
+      { h: '기구마다 공통', items: ['피복 (단자대)', '결선 (단자대)', '피복 (외부기구, 리밋스위치는 TB4)', '벨테스터로 선 찾기'] },
+      { h: 'PB0/PB1', items: ['선을 3방향으로 분리', '결선: 공통 > 위 > 아래', '뚜껑 덮기 (나사 2개)', '점검: a접점+공통 소리 X, b접점+공통 소리 O'] },
+      { h: 'PB2/CAP', items: ['선을 2방향으로 분리', '결선: 위 > 아래', '뚜껑 덮기 (나사 2개)', '점검: a+a접점 소리 X, PB2 누르면 소리 O'] },
+      { h: '램프', items: ['선을 3방향으로 분리', '결선: 공통 > 위 > 아래', '점검: 공통 > 상 > 하', '뚜껑 덮기 (나사 2개)'] },
+      { h: 'YL/BZ 공통단자 1개', items: ['선을 3방향으로 분리', '결선: 공통 > 위 > 아래', '점검: 공통 > 상 > 하', '뚜껑 덮기 (나사 2개)'] },
+      { h: 'YL/BZ 병렬', items: ['선을 2방향으로 분리', '결선: YL 위 > 아래', '점검: YB > 공통', '뚜껑 덮기 (나사 2개)'] },
+      { h: 'SS/CAP', items: ['선을 3방향으로 분리 (S 위, A 좌, M 우)', '결선: SS > A > M', '뚜껑 덮기', '점검: 11시(M)에서 SS+M 소리 O, SS+A 소리 X'] },
+      { h: '리밋스위치 공통선 없음', items: ['선을 4방향으로 분리', '결선 (TB4): LS1 1, 2, LS2 1, 2'] },
+      { h: '리밋스위치 공통선 있음', items: ['선을 3방향으로 분리', '결선 (TB4): 공통, LS1, LS2'] }
+    ],
+    keys: ['손목 자석밴드 사용', '결선 작업 시 벨테스터로 점검'],
+    warns: ['수동 드라이버 사용.', 'PB0, PB1 위치 확인.', 'PB2/CAP: CAP 설치 확인.', '램프: 흔들어 보기.', 'YL/BZ: BZ 결선 시 90도 꺾어서.', 'SS/CAP: CAP 설치 확인, SS 결선 시 90도 꺾어서.', '리밋스위치: 공통선 여부에 따라 결선 방식 변경, 감독위원 요구사항에 맞추기.']
+  },
+  22: {
+    sections: [{ items: ['피복 (TB2 또는 TB3)', '결선 (TB2 또는 TB3)', '피복 (단자대)', '선 찾기 (갈, 흑, 회, 녹)', '결선 (단자대)'] }],
+    warns: ['단자대 가로 배치: 왼쪽부터 갈, 흑, 회, 녹 순서로 결선.', '단자대 세로 배치: 위쪽부터 갈, 흑, 회, 녹 순서로 결선.', '단자대 2차측은 결선하지 않아요.']
+  },
+  23: {
+    sections: [
+      { h: '플로트레스', items: ['TB4 단자대 왼쪽부터 E1, E2, E3 황색선 결선', '동작시험용 배선 E1 10cm, E2 15cm, E3 20cm'] },
+      { h: '리밋스위치', plain: true, items: ['TB4 동작시험용 배선은 감독위원 요구대로', 'LS1, LS2가 떨어져 있으면: 인출선 2개 또는 4개 (2개 요구 시 LS1 첫번째, LS2 첫번째에서 각각)', 'LS1, LS2가 붙어 있으면(공통): 인출선 1개 또는 2개 (공통선에서 인출)'] }
+    ],
+    warns: ['리밋스위치 동작시험 배선은 감독위원마다 기준이 달라요. 요구사항을 반드시 확인하고 작업하세요.']
+  }
+};
+
+const text = (k, v) => ({ k, v });
+const pin = (k, v) => ({ k, v, pin: true });
+
+const CHECK_PAGES = [
+  { label: '배선', name: '배치와 배선', items: [
+    { title: '기구 배치', lines: [text('제어판', '기구배치도와 실제 배치 비교')] },
+    { title: '단자대', lines: [text('제어판', '상단, 하단 결선'), text('10P', '외부기구 넘버링 단자')] },
+    { title: '주회로', lines: [text('접지', 'PE 녹황선 연결'), text('주회로선', '갈, 흑, 회 연결'), text('퓨즈', '1차 갈, 회 / 2차 황')] }
+  ] },
+  { label: '단자', name: '단자 번호', items: [
+    { title: '전원 단자', lines: [pin('EOCR MC1 MC2', '6, 12번'), pin('X T FR', '2, 7번'), pin('FLS', '5, 6번')] },
+    { title: '비워야 할 단자', lines: [pin('EOCR', '11번'), pin('FLS', '2번'), pin('FR', '1, 3, 4번'), pin('T', '4번')] }
+  ] },
+  { label: '접점', name: '접점 번호', note: '접점은 도면에 따라 달라요.', items: [
+    { title: '접점', lines: [pin('MC1 MC2 a', '4-10'), pin('MC1 MC2 b', '5-11'), pin('X a', '1-3, 8-6'), pin('X b', '1-4, 8-5'), pin('FR a', '8-6'), pin('FR b', '8-5'), pin('T 순시 a', '1-3'), pin('T 한시 a', '8-6'), pin('T 한시 b', '8-5')] }
+  ] },
+  { label: '벨테스트', name: '전 구간 벨테스트', note: '점검이 끝나면 2~3분 쉬고 배관으로 넘어가세요.', items: [
+    { title: '벨테스트', lines: [text('전 구간', '회로도 빗금과 대조, 소리 확인')] }
+  ] }
+];
+
+const FINAL_GROUPS = [
+  { no: 24, name: '물리적 점검', items: ['배관도와 실제 배치 비교', '새들 누락, 새들 나사 누락 (PE관 나사 탈락 주의)', 'CAP 설치', '커넥터 방향과 걸침', '퓨즈 삽입', '기구와 박스 단단히 고정'] },
+  { no: 25, name: 'EOCR 도통검사', items: ['퓨즈 넣고 MCCB 스위치 위로', 'TB1 L1(갈색)과 퓨즈 갈색 2차 벨테스트', 'TB1 L3(회색)와 퓨즈 회색 2차 벨테스트', '소리 확인 후 MCCB 스위치 아래로'] },
+  { no: 26, name: '제어판 도통검사', items: ['단자대 상하 결선 연결', '전원 연결', '접점 확인 (a, b / 순시, 한시)', '배관 중 빠진 선 없는지 벨테스트', '케이블타이 마무리'] },
+  { no: 27, name: '감독관 관련', items: ['플로트레스: TB4 동작시험 배선 E1 10cm, E2 15cm, E3 20cm', '리밋스위치: 감독위원 요구대로 동작시험 배선', '모르면 감독위원께 정중히 질문'] }
+];
+
+const ICON = {
+  back: '<svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"/></svg>',
+  next: '<svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"/></svg>',
+  close: '<svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></svg>',
+  down: '<svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"{cls}><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg>',
+  arrow: '<svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg>',
+  check: (size, fill) => `<svg width="${size}" height="${size}" viewBox="0 0 256 256" fill="${fill}" aria-hidden="true"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg>`
+};
+
+const STORE_KEY = 'nd-ssam-checklist-v1';
+const emptyProgress = () => ({ check: {}, final: {}, steps: {} });
+
+function loadProgress() {
+  try {
+    return { ...emptyProgress(), ...JSON.parse(localStorage.getItem(STORE_KEY)) };
+  } catch {
+    return emptyProgress();
+  }
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(progress));
+  } catch {}
+}
+
+let progress = loadProgress();
+let view = { name: 'home', page: 0, step: 0 };
+let timeline = null;
+let confirmReset = false;
+let popKey = '';
+let firstRender = true;
+
+const root = document.getElementById('app');
+const live = document.getElementById('live');
+const allSteps = STAGES.flatMap((s) => s.groups.flatMap((g) => g.items.map(([no, name]) => ({ no, name, stage: s.name, group: g.name }))));
+const stepInfo = (no) => allSteps.find((s) => s.no === no);
+const finalIndex = (no) => no - 24;
+const finalKey = (no, i) => no + '-' + i;
+const isCheckItemDone = (title) => !!progress.check[title];
+const isFinalItemDone = (no, i) => !!progress.final[finalKey(no, i)];
+
+function isStepDone(no) {
+  if (no === 10) return CHECK_PAGES.every((p) => p.items.every((r) => isCheckItemDone(r.title)));
+  if (no >= 24) return FINAL_GROUPS[finalIndex(no)].items.every((_, i) => isFinalItemDone(no, i));
+  return !!progress.steps[no];
+}
+
+function stepHref(no) {
+  if (no === 10) return '#check-0';
+  if (no >= 24) return '#final-' + finalIndex(no);
+  return '#step-' + no;
+}
+
+const nextStep = () => allSteps.find((s) => !isStepDone(s.no));
+const doneCount = () => allSteps.filter((s) => isStepDone(s.no)).length;
+
+function checkRemaining() {
+  return CHECK_PAGES.flatMap((p) => p.items).filter((r) => !isCheckItemDone(r.title)).length;
+}
+
+function finalRemaining() {
+  return FINAL_GROUPS.reduce((sum, g) => sum + g.items.filter((_, i) => !isFinalItemDone(g.no, i)).length, 0);
+}
+
+function ring(done, key) {
+  const mark = done ? `<span class="${key === popKey ? 'pop' : ''}" style="display:flex">${ICON.check(16, 'var(--bg)')}</span>` : '';
+  return `<span class="ring">${mark}</span>`;
+}
+
+function backLink(href, label, icon) {
+  return `<a class="press icon-link" href="${href}" aria-label="${label}">${icon}</a>`;
+}
+
+function statusFooter(label, value, left, atFirst, atLast) {
+  return `<footer class="foot">
+    <button class="press round" type="button" data-act="prev" aria-label="이전 페이지"${atFirst ? ' disabled' : ''}>${ICON.back}</button>
+    <p class="status"><span>${label}</span><em class="${left ? 'left' : ''}">${value}</em></p>
+    <button class="press round" type="button" data-act="next" aria-label="다음 페이지"${atLast ? ' disabled' : ''}>${ICON.next}</button>
+  </footer>`;
+}
+
+function renderHome() {
+  const rise = firstRender ? 'rise' : '';
+  const checkTotal = CHECK_PAGES.flatMap((p) => p.items).length;
+  const finalTotal = FINAL_GROUPS.flatMap((g) => g.items).length;
+  return `<div class="home">
+    <p class="brand">전기기능사 실기</p>
+    <h1 class="hero ${rise}" tabindex="-1">몰라서가 아니라<br>실수로 떨어집니다</h1>
+    <p class="lead ${rise}">긴 작업 끝엔 집중이 떨어져요. 감이 아니라 순서로 점검하세요.</p>
+    <nav class="menu" aria-label="체크리스트">
+      <a class="press" href="#check-0" aria-label="중간점검, 항목 ${checkTotal}개, 10단계">
+        <span class="count hot">${checkTotal}</span>
+        <span class="menu-text"><b>중간점검</b><small>10단계, 제어판 작업 후</small></span>${ICON.next}
+      </a>
+      <a class="press" href="#final-0" aria-label="최종점검, 항목 ${finalTotal}개, 24에서 27단계">
+        <span class="count hot">${finalTotal}</span>
+        <span class="menu-text"><b>최종점검</b><small>24~27단계, 모든 작업 후</small></span>${ICON.next}
+      </a>
+      <a class="press split" href="#steps" aria-label="27단계 이미지 트레이닝">
+        <span class="count">27</span>
+        <span class="menu-text"><b>단계 이미지 트레이닝</b><small>작업 순서대로 머릿속에 그리기</small></span>${ICON.next}
+      </a>
+    </nav>
+    <a class="source" href="https://www.q-net.or.kr/cst006.do?id=cst00602&gSite=Q&brdId=Q006&code=1204&artlSeq=5208377">공개도면 원본은 Q-net에서 보기</a>
+  </div>`;
+}
+
+function renderCheck() {
+  const page = CHECK_PAGES[view.page];
+  const last = CHECK_PAGES.length - 1;
+  const tabs = CHECK_PAGES.map((p, i) => {
+    const done = p.items.filter((r) => isCheckItemDone(r.title)).length;
+    return `<button class="press tab ${i === view.page ? 'on' : ''}" type="button" data-act="page" data-arg="${i}" aria-current="${i === view.page ? 'step' : 'false'}" aria-label="${p.name}, ${p.items.length}개 중 ${done}개 완료">
+      <b class="word">${p.label}</b><small>${done}/${p.items.length}</small>
+    </button>`;
+  }).join('');
+  const rows = page.items.map((r) => {
+    const done = isCheckItemDone(r.title);
+    const lines = r.lines.map((l) => `<span class="kv ${l.pin ? 'pin' : ''}"><span>${l.k}</span><span>${l.v}</span></span>`).join('');
+    return `<button class="press row detail ${done ? 'done' : ''}" type="button" data-act="check" data-arg="${r.title}" aria-pressed="${done}">
+      ${ring(done, 'check:' + r.title)}
+      <span class="row-stack"><span class="row-title">${r.title}</span>${lines}</span>
+    </button>`;
+  }).join('');
+  const left = checkRemaining();
+  const note = page.note ? `<p class="note">${page.note}</p>` : '';
+  const onward = view.page === last ? `<a class="press continue" href="${stepHref(11)}"><span>11단계 제어판 부착으로</span>${ICON.arrow}</a>` : '';
+  return `<header class="head">
+    ${backLink('#home', '홈으로 돌아가기', ICON.back)}
+    <h1 class="title" tabindex="-1">중간점검</h1>
+    <p class="sub">10단계, 제어판 작업이 끝나면</p>
+    <p class="rule">한 단자에 선은 1~2가닥.<br>없거나 3가닥 이상이면 안 돼요.</p>
+    <div class="tabs">${tabs}</div>
+  </header>
+  <main class="body">
+    <h2 class="page-name">${page.name}</h2>
+    ${rows}${note}${onward}
+  </main>
+  ${statusFooter(left ? '남은 점검' : '중간점검 끝', left ? left + '개' : '완료', left > 0, view.page === 0, view.page === last)}`;
+}
+
+function renderFinal() {
+  const group = FINAL_GROUPS[view.page];
+  const last = FINAL_GROUPS.length - 1;
+  const tabs = FINAL_GROUPS.map((g, i) => {
+    const done = g.items.filter((_, n) => isFinalItemDone(g.no, n)).length;
+    return `<button class="press tab ${i === view.page ? 'on' : ''}" type="button" data-act="page" data-arg="${i}" aria-current="${i === view.page ? 'step' : 'false'}" aria-label="${g.no}단계 ${g.name}, ${g.items.length}개 중 ${done}개 완료">
+      <b>${g.no}</b><small>${done}/${g.items.length}</small>
+    </button>`;
+  }).join('');
+  const rows = group.items.map((item, i) => {
+    const key = finalKey(group.no, i);
+    const done = isFinalItemDone(group.no, i);
+    return `<button class="press row simple ${done ? 'done' : ''}" type="button" data-act="final" data-arg="${key}" aria-pressed="${done}">
+      ${ring(done, 'final:' + key)}
+      <span class="row-text">${item}</span>
+    </button>`;
+  }).join('');
+  const left = finalRemaining();
+  return `<header class="head">
+    ${backLink('#home', '홈으로 돌아가기', ICON.back)}
+    <h1 class="title" tabindex="-1">최종점검</h1>
+    <div class="tabs">${tabs}</div>
+  </header>
+  <main class="body">
+    <h2 class="page-name">${group.name}</h2>
+    ${rows}
+  </main>
+  ${statusFooter(left ? '남은 점검' : '최종점검 끝', left ? left + '개' : '완료', left > 0, view.page === 0, view.page === last)}`;
+}
+
+function ensureTimeline() {
+  if (timeline) return;
+  const upcoming = nextStep();
+  const stage = upcoming ? STAGES.findIndex((s) => s.name === upcoming.stage) : 0;
+  timeline = { stage, opened: upcoming ? { [upcoming.group]: true } : {} };
+}
+
+function renderTimeline() {
+  ensureTimeline();
+  const upcoming = nextStep();
+  const stages = STAGES.map((s, i) => `<button class="press ${i === timeline.stage ? 'on' : ''}" type="button" data-act="stage" data-arg="${i}" aria-pressed="${i === timeline.stage}">${s.name}</button>`).join('');
+  const groups = STAGES[timeline.stage].groups.map((g) => {
+    const open = !!timeline.opened[g.name];
+    const finished = g.items.filter(([no]) => isStepDone(no)).length;
+    const items = open ? `<ul class="group-list">${g.items.map(([no, name]) => {
+      const done = isStepDone(no);
+      const isNext = upcoming && upcoming.no === no;
+      const tag = isNext ? '다음' : no === 10 || no >= 24 ? '점검' : '';
+      return `<li><a class="press item ${done ? 'done' : ''} ${isNext ? 'next' : ''}" href="${stepHref(no)}">
+        <span class="no">${no}</span><span class="name">${name}</span>
+        ${tag ? `<span class="tag">${tag}</span>` : ''}
+        ${done ? `<span role="img" aria-label="완료" style="display:flex">${ICON.check(20, 'currentColor')}</span>` : ''}
+      </a></li>`;
+    }).join('')}</ul>` : '';
+    return `<section style="display:flex;flex-direction:column;gap:8px">
+      <h2 style="margin:0"><button class="press group-head" type="button" data-act="group" data-arg="${g.name}" aria-expanded="${open}">
+        <span class="group-text"><b>${g.name}</b><small>${g.minutes}, ${finished}/${g.items.length}</small></span>
+        ${ICON.down.replace('{cls}', open ? ' class="open"' : '')}
+      </button></h2>
+      ${items}
+    </section>`;
+  }).join('');
+  const cta = upcoming
+    ? `<a class="press cta" href="${stepHref(upcoming.no)}">${upcoming.no}단계 이어서 ${ICON.arrow}</a>`
+    : `<a class="press cta" href="#home">27단계를 모두 끝냈어요</a>`;
+  return `<header class="head">
+    ${backLink('#home', '홈으로 돌아가기', ICON.back)}
+    <div class="bar"><h1 tabindex="-1">27단계</h1><p>${doneCount()} / 27 완료</p></div>
+    <div class="seg">${stages}</div>
+  </header>
+  <main class="body">
+    ${groups}
+    <button class="reset ${confirmReset ? 'sure' : ''}" type="button" data-act="reset">${confirmReset ? '한 번 더 누르면 모든 기록이 지워져요' : '기록 지우고 처음부터'}</button>
+  </main>
+  <footer class="foot plain">${cta}</footer>`;
+}
+
+function neighbor(no, label, icon) {
+  if (no < 1 || no > 27) return `<button class="press round" type="button" aria-label="${label}" disabled>${icon}</button>`;
+  return `<a class="press round" href="${stepHref(no)}" aria-label="${label}">${icon}</a>`;
+}
+
+function renderStep() {
+  const no = view.step;
+  const info = stepInfo(no);
+  const data = STEPS[no];
+  const done = !!progress.steps[no];
+  const big = data.big ? `<ol class="big">${data.big.map(([main, note]) => `<li><b>${main}</b>${note ? `<small>${note}</small>` : ''}</li>`).join('')}</ol>` : '';
+  const sections = (data.sections || []).map((s) => {
+    const list = s.plain
+      ? `<ul class="plain-list">${s.items.map((t) => `<li>${t}</li>`).join('')}</ul>`
+      : `<ol class="seq">${s.items.map((t) => `<li><span>${t}</span></li>`).join('')}</ol>`;
+    return `<section class="sec">${s.h ? `<h2>${s.h}</h2>` : ''}${list}</section>`;
+  }).join('');
+  const keys = data.keys ? `<div class="keys">${data.keys.map((k) => `<p>${k}</p>`).join('')}</div>` : '';
+  const warns = data.warns ? `<section class="sec"><h2 class="warn">주의</h2><div class="warns">${data.warns.map((w) => `<p>${w}</p>`).join('')}</div></section>` : '';
+  return `<header class="step-top">
+    ${backLink('#steps', '목록으로 돌아가기', ICON.close)}
+    <p>${no} / 27</p>
+  </header>
+  <main class="step">
+    <div>
+      <p class="crumb">${info.stage}, ${info.group}</p>
+      <h1 class="step-name ${info.name.length > 8 ? 'long' : ''}" tabindex="-1">${info.name}</h1>
+      ${data.sub ? `<p class="step-sub">${data.sub}</p>` : ''}
+    </div>
+    ${big}${sections}${keys}${warns}
+  </main>
+  <footer class="foot plain">
+    ${neighbor(no - 1, '이전 단계', ICON.back)}
+    <button class="press toggle ${done ? 'on' : ''}" type="button" data-act="step" data-arg="${no}" aria-pressed="${done}">${done ? '완료함' : '머릿속으로 끝냈어요'}</button>
+    ${neighbor(no + 1, '다음 단계', ICON.next)}
+  </footer>`;
+}
+
+const SCREENS = {
+  home: [renderHome, '전기기능사 실기 체크리스트'],
+  check: [renderCheck, '중간점검'],
+  final: [renderFinal, '최종점검'],
+  steps: [renderTimeline, '27단계'],
+  step: [renderStep, '이미지 트레이닝']
+};
+
+function render() {
+  const active = document.activeElement;
+  const selector = active && active.dataset && active.dataset.act
+    ? `[data-act="${active.dataset.act}"]` + (active.dataset.arg !== undefined ? `[data-arg="${active.dataset.arg}"]` : '')
+    : '';
+  root.innerHTML = SCREENS[view.name][0]();
+  if (selector) {
+    const again = root.querySelector(selector);
+    if (again) again.focus({ preventScroll: true });
+  }
+  popKey = '';
+  firstRender = false;
+}
+
+function setView(next) {
+  view = { name: 'home', page: 0, step: 0, ...next };
+}
+
+function parseRoute() {
+  const [name, arg] = location.hash.replace(/^#/, '').split('-');
+  const n = Number(arg);
+  if (name === 'check') return { name, page: n >= 0 && n < CHECK_PAGES.length ? n : 0 };
+  if (name === 'final') return { name, page: n >= 0 && n < FINAL_GROUPS.length ? n : 0 };
+  if (name === 'steps') return { name };
+  if (name === 'step' && Number.isInteger(n) && n >= 1 && n <= 27) {
+    if (n === 10) return { name: 'check', page: 0 };
+    if (n >= 24) return { name: 'final', page: finalIndex(n) };
+    return { name, step: n };
+  }
+  return { name: 'home' };
+}
+
+function onRoute() {
+  const isFirst = firstRender;
+  setView(parseRoute());
+  confirmReset = false;
+  render();
+  const label = SCREENS[view.name][1];
+  document.title = view.name === 'step' ? `${view.step}단계 ${stepInfo(view.step).name} | 전기기능사 실기` : label;
+  window.scrollTo(0, 0);
+  if (!isFirst) {
+    const heading = root.querySelector('h1');
+    if (heading) heading.focus({ preventScroll: true });
+  }
+}
+
+function goToPage(page) {
+  view.page = page;
+  history.replaceState(null, '', `#${view.name}-${page}`);
+  render();
+  window.scrollTo(0, 0);
+}
+
+const ACTIONS = {
+  check(arg) {
+    progress.check[arg] = !progress.check[arg];
+    popKey = 'check:' + arg;
+    saveProgress();
+    render();
+    const left = checkRemaining();
+    live.textContent = left ? `남은 점검 ${left}개` : '중간점검 완료';
+  },
+  final(arg) {
+    progress.final[arg] = !progress.final[arg];
+    popKey = 'final:' + arg;
+    saveProgress();
+    render();
+    const left = finalRemaining();
+    live.textContent = left ? `남은 점검 ${left}개` : '최종점검 완료';
+  },
+  step(arg) {
+    progress.steps[arg] = !progress.steps[arg];
+    saveProgress();
+    render();
+  },
+  page(arg) {
+    goToPage(Number(arg));
+  },
+  prev() {
+    goToPage(view.page - 1);
+  },
+  next() {
+    goToPage(view.page + 1);
+  },
+  stage(arg) {
+    timeline.stage = Number(arg);
+    render();
+  },
+  group(arg) {
+    timeline.opened[arg] = !timeline.opened[arg];
+    render();
+  },
+  reset() {
+    if (!confirmReset) {
+      confirmReset = true;
+      render();
+      return;
+    }
+    confirmReset = false;
+    progress = emptyProgress();
+    saveProgress();
+    timeline = null;
+    render();
+    live.textContent = '모든 기록을 지웠어요';
+  }
+};
+
+root.addEventListener('click', (event) => {
+  const target = event.target.closest('[data-act]');
+  if (!target || target.disabled) return;
+  const act = target.dataset.act;
+  if (act !== 'reset') confirmReset = false;
+  ACTIONS[act](target.dataset.arg);
+});
+
+window.addEventListener('hashchange', onRoute);
+onRoute();
+</script>
+</body>
+</html>
